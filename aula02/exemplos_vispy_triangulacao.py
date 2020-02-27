@@ -1,6 +1,5 @@
 # Define a simple Gaussian surface
 # sphinx_gallery_thumbnail_number = 2
-%matplotlib inline
 from pyvista import set_plot_theme
 set_plot_theme('document')
 import pyvista as pv
