@@ -1,9 +1,11 @@
-/* para linux, instalar libglfw3-dev mesa-common-dev */
-/* para windows, instalar bibliotecas compiladas do glfw3 */
+/* para linux, instalar os pacotes libglfw3-dev mesa-common-dev libglew-dev */
+/* para compilar no linux: gcc aula07_ex01.c -lglfw -lGL -lGLEW -lm */
 
-/* para compilar no linux: gcc -lglfw -lGL -lm -lXrandr -lXi -lX11 -lXxf86vm -lpthread aula07_ex01.c */
+/* para windows, instalar bibliotecas compiladas do glfw3 e glew no ambiente mingw */
+/* para compilar no windows: gcc aula07_ex01.c -lglfw3dll -lglew32 -lopengl32 */
 
-#include <GL/gl.h>  /* verifique no seu SO onde fica o gl.h */
+
+#include <GL/glew.h>  
 
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h> /* verifique no seu SO onde fica o glfw3.h */
@@ -92,7 +94,7 @@ void multiplica(float *m1, float *m2, float *m_resultado){
  
 int main(void){
  
-    // inicicializando o sistema de janelas
+    // inicicializando o sistema de\ janelas
     glfwInit();
 
     // deixando a janela invisivel, por enquanto
@@ -105,6 +107,10 @@ int main(void){
     
     // tornando a janela como principal 
     glfwMakeContextCurrent(window);
+
+    // inicializando Glew (para lidar com funcoes OpenGL)
+    GLint GlewInitResult = glewInit();
+    printf("GlewStatus: %s", glewGetErrorString(GlewInitResult));
 
 
     // GLSL para Vertex Shader
